@@ -1,10 +1,12 @@
 import random
 import MLB_WP,MLB_WC,MLB_DS,MLB_LCS
 
+# Stores the teams and their win perecentages calculated in the MLB_WP file into a local variable.
 wph = MLB_WP.wph
 wpa = MLB_WP.wpa
 teams = MLB_WP.teams
 
+# Initializes a count for every winner/game count possibility in each round of the playoffs
 WCW = [0,0,0,0]
 DSW = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 LCSW = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -12,10 +14,15 @@ WSW = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
 iterate = int(input("How many simulations would you like?"))
 
+# Preforms the simulation for the number of times required by the user.
 for i in range(0,iterate):
+
+    # Stores the outcome of each Wild Card game
     WC1 = MLB_WC.WC(4,5,wph[3][4])
     WC2 = MLB_WC.WC(9,10,wph[8][9])
 
+    # Checks which team wins each game and increments the respective counter. Reports an error if an outcome is not 
+    # determined.
     if(WC1 == 4):
         WCW[0] += 1
     elif(WC1 == 5):
@@ -30,12 +37,14 @@ for i in range(0,iterate):
     else:
         print("ERROR: WC2")
 
-    # Division Series winner flags
+    # Simulates the Division Series
     DS1,DS1_Wins = MLB_DS.DS(1,WC1,wph[0][WC1-1],wpa[0][WC1-1])
     DS2,DS2_Wins = MLB_DS.DS(6,WC2,wph[5][WC2-1],wpa[5][WC2-1])
     DS3,DS3_Wins = MLB_DS.DS(2,3,wph[1][2],wpa[1][2])
     DS4,DS4_Wins = MLB_DS.DS(7,8,wph[6][7],wpa[6][7])
 
+    # Checks the outcomes of the Division Series and increments the respective counter. Returns an error if possible outcomes
+    # are not achieved.
     if(DS1 == 1 and DS1_Wins == 3):
         DSW[0] += 1
     elif(DS1 == 1 and DS1_Wins == 4):
@@ -108,14 +117,18 @@ for i in range(0,iterate):
     else:
         print("ERROR: DS4")
 
+    # Ensures the lower seed has the homefield advantage
     LCS1_ls = max(DS1,DS3)
     LCS1_hs = min(DS1,DS3)
     LCS2_ls = max(DS2,DS4)
     LCS2_hs = min(DS2,DS4)
 
+    # Simulates the League Championship Series
     LCS1,LCS1_Wins = MLB_LCS.LCS(LCS1_hs,LCS1_ls,wph[LCS1_hs-1][LCS1_ls-1],wpa[LCS1_hs-1][LCS1_ls-1])
     LCS2,LCS2_Wins = MLB_LCS.LCS(LCS2_hs,LCS2_ls,wph[LCS2_hs-1][LCS2_ls-1],wpa[LCS2_hs-1][LCS2_ls-1])
 
+    # Checks the outcome of each League Champhionship Series and increments the respective counter. Returns an error if 
+    # possible outcomes are not achieved.
     if(LCS1 == 1 and LCS1_Wins == 4):
         LCSW[0] += 1
     elif(LCS1 == 1 and LCS1_Wins == 5):
@@ -203,8 +216,11 @@ for i in range(0,iterate):
         print("ERROR: LCS2")
 
 
+    # Simulates the World Series
     WS,WS_Wins = MLB_LCS.LCS(LCS1,LCS2,wph[LCS1-1][LCS2-1],wpa[LCS1-1][LCS2-1])
 
+    # Checks the outcome of each League Champhionship Series and increments the respective counter. Returns an error if 
+    # possible outcomes are not achieved.
     if(WS == 1 and WS_Wins == 4):
         WSW[0] += 1
     elif(WS == 1 and WS_Wins == 5):
@@ -288,6 +304,7 @@ for i in range(0,iterate):
     else:
         print("ERROR: WS")
 
+# Compiles the counters for each round into new lists for quick lookup
 WC = [0,0,0,WCW[0],WCW[1],0,0,0,WCW[2],WCW[3]]
 DS3 = [DSW[0],DSW[3],DSW[6],DSW[9],DSW[12],DSW[15],DSW[18],DSW[21],DSW[24],DSW[27]]
 DS4 = [DSW[1],DSW[4],DSW[7],DSW[10],DSW[13],DSW[16],DSW[19],DSW[22],DSW[25],DSW[28]]
@@ -301,6 +318,8 @@ WS5 = [WSW[1],WSW[5],WSW[9],WSW[13],WSW[17],WSW[21],WSW[25],WSW[29],WSW[33],WSW[
 WS6 = [WSW[2],WSW[6],WSW[10],WSW[14],WSW[18],WSW[22],WSW[26],WSW[30],WSW[34],WSW[38]]
 WS7 = [WSW[3],WSW[7],WSW[11],WSW[15],WSW[19],WSW[23],WSW[27],WSW[31],WSW[35],WSW[39]]
 
+# Generates a report for each team that documents the frequency of their wins. The Wild Card teams get a unique line for
+# the Wild Card round.
 for x in range(0,len(teams)):
     if(x == 3 or x == 4 or x == 8 or x == 9):
         print("%s chances of winning:" %(teams[x]))

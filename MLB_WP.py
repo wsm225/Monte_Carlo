@@ -1,11 +1,11 @@
-
+# Variables initialized
 teams = []
 team_wins = []
 team_index = 1
 
 # Asks the user to input each team that make the playoffs w/ their season win%
 for team_index in range(0,10):
-    teams.append(input("Which team is the #%d seed team?" % (team_index+1)))
+    teams.append(input("Which team is the #%d seed team? " % (team_index+1)))
     team_wins.append(float(input("What was their win percentage?")))
     print("\n")
 
@@ -14,9 +14,6 @@ for team_index in range(0,10):
 def win_prob(p,q):
     wp = (p-p*q)/(p+q-2*p*q)
     return wp
-
-# teams = ["SFG","MIL","NYM","LAD","SDP","HOU","BOS","CHW","TBR","OAK"]
-# team_wins = [0.649,0.577,0.548,0.597,0.588,0.615,0.603,0.579,0.595,0.588]
 
 # Dictionary for home field advantage by team
 hfa = {
@@ -52,6 +49,7 @@ hfa = {
     "ARI" : 0.033
 }
 
+# Initializing lists to store the win probability for each team.
 wp1h = []
 wp1a = []
 wp2h = []
@@ -73,6 +71,7 @@ wp9a = []
 wpAh = []
 wpAa = []
 
+# Calculates the win probability of each matchup by accounting for the home field advantage bonus. 
 for x in range(0,len(teams)):
     wp1h.append(win_prob(team_wins[0]+hfa[teams[0]],team_wins[x]-hfa[teams[0]]))
     wp1a.append(win_prob(team_wins[0]-hfa[teams[x]],team_wins[x]+hfa[teams[x]]))
@@ -95,8 +94,6 @@ for x in range(0,len(teams)):
     wpAh.append(win_prob(team_wins[9]+hfa[teams[9]],team_wins[x]-hfa[teams[9]]))
     wpAa.append(win_prob(team_wins[9]-hfa[teams[x]],team_wins[x]+hfa[teams[x]]))
 
-# print("%s has a %3f chance of beating %s if they are the home team." % (teams[3],wp45h,teams[4]))
-# print("However, if %s is the away team, they have a %3f chance of beating %s." % (teams[3],wp45a,teams[4]))
-
+# Stores each list of win probabilites in a super list for easier call backs later.
 wph = [wp1h,wp2h,wp3h,wp4h,wp5h,wp6h,wp7h,wp8h,wp9h,wpAh]
 wpa = [wp1a,wp2a,wp3a,wp4a,wp5a,wp6a,wp7a,wp8a,wp9a,wpAa]
