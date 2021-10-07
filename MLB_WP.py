@@ -6,7 +6,7 @@ team_index = 1
 # Asks the user to input each team that make the playoffs w/ their season win%
 for team_index in range(0,10):
     teams.append(input("Which team is the #%d seed team? " % (team_index+1)))
-    team_wins.append(float(input("What was their win percentage?")))
+    team_wins.append(float(input("What was their win percentage? ")))
     print("\n")
 
 # The following function calculates the win probability between two teams given their season win percentage.

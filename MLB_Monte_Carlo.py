@@ -12,7 +12,7 @@ DSW = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 LCSW = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 WSW = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
-iterate = int(input("How many simulations would you like?"))
+iterate = int(input("How many simulations would you like? "))
 
 # Preforms the simulation for the number of times required by the user.
 for i in range(0,iterate):
@@ -306,9 +306,9 @@ for i in range(0,iterate):
 
 # Compiles the counters for each round into new lists for quick lookup
 WC = [0,0,0,WCW[0],WCW[1],0,0,0,WCW[2],WCW[3]]
-DS3 = [DSW[0],DSW[3],DSW[6],DSW[9],DSW[12],DSW[15],DSW[18],DSW[21],DSW[24],DSW[27]]
-DS4 = [DSW[1],DSW[4],DSW[7],DSW[10],DSW[13],DSW[16],DSW[19],DSW[22],DSW[25],DSW[28]]
-DS5 = [DSW[2],DSW[5],DSW[8],DSW[11],DSW[14],DSW[17],DSW[20],DSW[23],DSW[26],DSW[29]]
+DS3 = [DSW[0],DSW[18],DSW[21],DSW[3],DSW[6],DSW[9],DSW[24],DSW[27],DSW[12],DSW[15]]
+DS4 = [DSW[1],DSW[19],DSW[22],DSW[4],DSW[7],DSW[10],DSW[25],DSW[28],DSW[13],DSW[16]]
+DS5 = [DSW[2],DSW[20],DSW[23],DSW[5],DSW[8],DSW[11],DSW[26],DSW[29],DSW[14],DSW[17]]
 LCS4 = [LCSW[0],LCSW[4],LCSW[8],LCSW[12],LCSW[16],LCSW[20],LCSW[24],LCSW[28],LCSW[32],LCSW[36]]
 LCS5 = [LCSW[1],LCSW[5],LCSW[9],LCSW[13],LCSW[17],LCSW[21],LCSW[25],LCSW[29],LCSW[33],LCSW[37]]
 LCS6 = [LCSW[2],LCSW[6],LCSW[10],LCSW[14],LCSW[18],LCSW[22],LCSW[26],LCSW[30],LCSW[34],LCSW[38]]
