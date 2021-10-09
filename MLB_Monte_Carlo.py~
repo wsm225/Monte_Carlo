@@ -1,5 +1,5 @@
 import random
-import MLB_WP,MLB_WC,MLB_DS,MLB_LCS
+import MLB_WC,MLB_DS,MLB_LCS
 
 # Initializes a count for every winner/game count possibility in each round of the playoffs
 WCW = [0,0,0,0]
@@ -7,33 +7,14 @@ DSW = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 LCSW = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 WSW = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
-teams = MLB_WP.teams
-
-WC1w = int(input("Who won the first Wild Card game? Enter 4 for %s, 5 for %s, or 0 for neither: " % (teams[3],teams[4])))
-WC2w = int(input("Who won the second Wild Card game? Enter 9 for %s, A for %s, or 0 for neither: " % (teams[8],teams[9])))
-DS1w1 = int(input("How many games did %s win in the first Division Series? " % teams[0]))
-DS1w45 = int(input("How many games did %s's opponent win in the series? " % teams[0]))
-DS2w6 = int(input("How many games did %s win in the second Division Series? " % teams[5]))
-DS2w9A = int(input("How many games did %s's opponent win in the series? " % teams[5]))
-DS3w2 = int(input("How many games did %s win in the third Division Series? " % teams[1]))
-DS3w3 = int(input("How many games did %s win in the third Division Series? " % teams[2]))
-DS4w7 = int(input("How many games did %s win in the fourth Division Series? " % teams[6]))
-DS4w8 = int(input("How many games did %s win in the fourth Division Series? " % teams[7]))
-LCS1wh = int(input("How many games did the highest ranked team win in the first League Championship Series? "))
-LCS1wl = int(input("How many games did the lowest ranked team win in the first League Championship Series? "))
-LCS2wh = int(input("How many games did the highest ranked team win in the second League Championship Series? "))
-LCS2wl = int(input("How many games did the lowest ranked team win in the second League Championship Series? "))
-WSwh = int(input("How many games did the highest ranked team win in the World Series? "))
-WSwl = int(input("How many games did the lowest ranked team win in the World Series? "))
-
-iterate = int(input("How many simulations would you like? \n"))
+iterate = int(input("How many simulations would you like? "))
 
 # Preforms the simulation for the number of times required by the user.
 for i in range(0,iterate):
 
     # Stores the outcome of each Wild Card game
-    WC1 = MLB_WC.WC(4,5,WC1w)
-    WC2 = MLB_WC.WC(9,10,WC2w)
+    WC1 = MLB_WC.WC(4,5,wph[3][4])
+    WC2 = MLB_WC.WC(9,10,wph[8][9])
 
     # Checks which team wins each game and increments the respective counter. Reports an error if an outcome is not 
     # determined.
@@ -52,10 +33,10 @@ for i in range(0,iterate):
         print("ERROR: WC2")
 
     # Simulates the Division Series
-    DS1,DS1_Wins = MLB_DS.DS(1,WC1,DS1w1,DS1w45)
-    DS2,DS2_Wins = MLB_DS.DS(6,WC2,DS2w6,DS2w9A)
-    DS3,DS3_Wins = MLB_DS.DS(2,3,DS3w2,DS3w3)
-    DS4,DS4_Wins = MLB_DS.DS(7,8,DS4w7,DS4w8)
+    DS1,DS1_Wins = MLB_DS.DS(1,WC1,wph[0][WC1-1],wpa[0][WC1-1])
+    DS2,DS2_Wins = MLB_DS.DS(6,WC2,wph[5][WC2-1],wpa[5][WC2-1])
+    DS3,DS3_Wins = MLB_DS.DS(2,3,wph[1][2],wpa[1][2])
+    DS4,DS4_Wins = MLB_DS.DS(7,8,wph[6][7],wpa[6][7])
 
     # Checks the outcomes of the Division Series and increments the respective counter. Returns an error if possible outcomes
     # are not achieved.
@@ -138,8 +119,8 @@ for i in range(0,iterate):
     LCS2_hs = min(DS2,DS4)
 
     # Simulates the League Championship Series
-    LCS1,LCS1_Wins = MLB_LCS.LCS(LCS1_hs,LCS1_ls,LCS1wh,LCS1wl)
-    LCS2,LCS2_Wins = MLB_LCS.LCS(LCS2_hs,LCS2_ls,LCS2wh,LCS2wl)
+    LCS1,LCS1_Wins = MLB_LCS.LCS(LCS1_hs,LCS1_ls,wph[LCS1_hs-1][LCS1_ls-1],wpa[LCS1_hs-1][LCS1_ls-1])
+    LCS2,LCS2_Wins = MLB_LCS.LCS(LCS2_hs,LCS2_ls,wph[LCS2_hs-1][LCS2_ls-1],wpa[LCS2_hs-1][LCS2_ls-1])
 
     # Checks the outcome of each League Champhionship Series and increments the respective counter. Returns an error if 
     # possible outcomes are not achieved.
@@ -231,7 +212,7 @@ for i in range(0,iterate):
 
 
     # Simulates the World Series
-    WS,WS_Wins = MLB_LCS.LCS(LCS1,LCS2,WSwh,WSwl)
+    WS,WS_Wins = MLB_LCS.LCS(LCS1,LCS2,wph[LCS1-1][LCS2-1],wpa[LCS1-1][LCS2-1])
 
     # Checks the outcome of each League Champhionship Series and increments the respective counter. Returns an error if 
     # possible outcomes are not achieved.

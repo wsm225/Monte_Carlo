@@ -18,7 +18,7 @@ def LCS(hs,ls,wfh,wfl):
         LCS_rand.append(random.random())
 
     # Runs the simulation for the series and increments the win count for the winning team
-    for x in range(0,7-(wfh+wfl)):
+    for x in range(0,7-(wfh+wfa)):
 
         # Checks who has home field advantage. Games 1,2,6,&7 are played at the home of the higher seed while the rest are
         # played at the home of the lower seed.

@@ -10,10 +10,6 @@ def DS(hs,ls,wfh,wfl):
     DS_Winsx = 0 + wfh
     DS_Winsy = 0 + wfl
 
-    # Looks up the win probability for the higher seeded team for home and away games
-    wph = MLB_WP.wph[hs-1][ls-1]
-    wpa = MLB_WP.wpa[hs-1][ls-1]
-
     # Creates a list of random numbers
     for x in range(1,6):
         DS_rand.append(random.random())
