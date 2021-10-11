@@ -10,7 +10,7 @@ WSW = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 teams = MLB_WP.teams
 
 WC1w = int(input("Who won the first Wild Card game? Enter 4 for %s, 5 for %s, or 0 for neither: " % (teams[3],teams[4])))
-WC2w = int(input("Who won the second Wild Card game? Enter 9 for %s, A for %s, or 0 for neither: " % (teams[8],teams[9])))
+WC2w = int(input("Who won the second Wild Card game? Enter 9 for %s, 10 for %s, or 0 for neither: " % (teams[8],teams[9])))
 DS1w1 = int(input("How many games did %s win in the first Division Series? " % teams[0]))
 DS1w45 = int(input("How many games did %s's opponent win in the series? " % teams[0]))
 DS2w6 = int(input("How many games did %s win in the second Division Series? " % teams[5]))
