@@ -12,9 +12,9 @@ teams = MLB_WP.teams
 WC1w = int(input("Who won the first Wild Card game? Enter 4 for %s, 5 for %s, or 0 for neither: " % (teams[3],teams[4])))
 WC2w = int(input("Who won the second Wild Card game? Enter 9 for %s, 10 for %s, or 0 for neither: " % (teams[8],teams[9])))
 DS1w1 = int(input("How many games did %s win in the first Division Series? " % teams[0]))
-DS1w45 = int(input("How many games did %s's opponent win in the series? " % teams[0]))
+DS1w45 = int(input("How many games did %s win in the first Division Series? " % teams[WC1w-1]))
 DS2w6 = int(input("How many games did %s win in the second Division Series? " % teams[5]))
-DS2w9A = int(input("How many games did %s's opponent win in the series? " % teams[5]))
+DS2w9A = int(input("How many games did %s win in the second Division Series? " % teams[WC2w-1]))
 DS3w2 = int(input("How many games did %s win in the third Division Series? " % teams[1]))
 DS3w3 = int(input("How many games did %s win in the third Division Series? " % teams[2]))
 DS4w7 = int(input("How many games did %s win in the fourth Division Series? " % teams[6]))
@@ -26,7 +26,8 @@ LCS2wl = int(input("How many games did the lowest ranked team win in the second 
 WSwh = int(input("How many games did the highest ranked team win in the World Series? "))
 WSwl = int(input("How many games did the lowest ranked team win in the World Series? "))
 
-iterate = int(input("How many simulations would you like? \n"))
+iterate = int(input("How many simulations would you like? "))
+print("\n")
 
 # Preforms the simulation for the number of times required by the user.
 for i in range(0,iterate):
